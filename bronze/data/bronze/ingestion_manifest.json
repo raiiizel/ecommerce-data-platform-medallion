@@ -1,0 +1,20 @@
+{
+  "run_timestamp": "2026-03-19T14:38:40.386896",
+  "entities": {
+    "products": {
+      "status": "ok",
+      "record_count": 194,
+      "path": "data/bronze\\products\\products_raw.json"
+    },
+    "users": {
+      "status": "ok",
+      "record_count": 208,
+      "path": "data/bronze\\users\\users_raw.json"
+    },
+    "carts": {
+      "status": "ok",
+      "record_count": 50,
+      "path": "data/bronze\\carts\\carts_raw.json"
+    }
+  }
+}
