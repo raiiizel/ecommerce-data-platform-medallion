@@ -1,0 +1,46 @@
+[2026-03-19T18:40:40.304+0000] {processor.py:161} INFO - Started process (PID=168) to work on /opt/airflow/dags/ecommerce_pipeline_dag.py
+[2026-03-19T18:40:40.305+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ecommerce_pipeline_dag.py for tasks to queue
+[2026-03-19T18:40:40.307+0000] {logging_mixin.py:188} INFO - [2026-03-19T18:40:40.306+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/ecommerce_pipeline_dag.py
+[2026-03-19T18:40:40.342+0000] {logging_mixin.py:188} INFO - [2026-03-19T18:40:40.336+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/ecommerce_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/opt/airflow/dags/ecommerce_pipeline_dag.py", line 99, in <module>
+    [silver_products, silver_users, silver_carts] >> [
+TypeError: unsupported operand type(s) for >>: 'list' and 'list'
+[2026-03-19T18:40:40.344+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ecommerce_pipeline_dag.py
+[2026-03-19T18:40:40.378+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ecommerce_pipeline_dag.py took 0.077 seconds
+[2026-03-19T18:41:10.510+0000] {processor.py:161} INFO - Started process (PID=173) to work on /opt/airflow/dags/ecommerce_pipeline_dag.py
+[2026-03-19T18:41:10.511+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ecommerce_pipeline_dag.py for tasks to queue
+[2026-03-19T18:41:10.513+0000] {logging_mixin.py:188} INFO - [2026-03-19T18:41:10.512+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/ecommerce_pipeline_dag.py
+[2026-03-19T18:41:10.536+0000] {logging_mixin.py:188} INFO - [2026-03-19T18:41:10.531+0000] {dagbag.py:348} ERROR - Failed to import: /opt/airflow/dags/ecommerce_pipeline_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/dagbag.py", line 344, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/opt/airflow/dags/ecommerce_pipeline_dag.py", line 99, in <module>
+    [silver_products, silver_users, silver_carts] >> [
+TypeError: unsupported operand type(s) for >>: 'list' and 'list'
+[2026-03-19T18:41:10.538+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ecommerce_pipeline_dag.py
+[2026-03-19T18:41:10.567+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ecommerce_pipeline_dag.py took 0.060 seconds
+[2026-03-19T18:41:37.751+0000] {processor.py:161} INFO - Started process (PID=178) to work on /opt/airflow/dags/ecommerce_pipeline_dag.py
+[2026-03-19T18:41:37.752+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ecommerce_pipeline_dag.py for tasks to queue
+[2026-03-19T18:41:37.754+0000] {logging_mixin.py:188} INFO - [2026-03-19T18:41:37.753+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/ecommerce_pipeline_dag.py
+[2026-03-19T18:41:37.805+0000] {processor.py:840} INFO - DAG(s) 'ecommerce_medallion_pipeline' retrieved from /opt/airflow/dags/ecommerce_pipeline_dag.py
+[2026-03-19T18:41:38.064+0000] {logging_mixin.py:188} INFO - [2026-03-19T18:41:38.063+0000] {override.py:1769} INFO - Created Permission View: can read on DAG:ecommerce_medallion_pipeline
+[2026-03-19T18:41:38.079+0000] {logging_mixin.py:188} INFO - [2026-03-19T18:41:38.079+0000] {override.py:1769} INFO - Created Permission View: can delete on DAG:ecommerce_medallion_pipeline
+[2026-03-19T18:41:38.091+0000] {logging_mixin.py:188} INFO - [2026-03-19T18:41:38.090+0000] {override.py:1769} INFO - Created Permission View: can edit on DAG:ecommerce_medallion_pipeline
+[2026-03-19T18:41:38.091+0000] {logging_mixin.py:188} INFO - [2026-03-19T18:41:38.091+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-03-19T18:41:38.109+0000] {logging_mixin.py:188} INFO - [2026-03-19T18:41:38.109+0000] {dag.py:3058} INFO - Creating ORM DAG for ecommerce_medallion_pipeline
+[2026-03-19T18:41:38.127+0000] {logging_mixin.py:188} INFO - [2026-03-19T18:41:38.127+0000] {dag.py:3823} INFO - Setting next_dagrun for ecommerce_medallion_pipeline to 2026-03-18 06:00:00+00:00, run_after=2026-03-19 06:00:00+00:00
+[2026-03-19T18:41:38.167+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ecommerce_pipeline_dag.py took 0.419 seconds
+[2026-03-19T18:42:08.397+0000] {processor.py:161} INFO - Started process (PID=183) to work on /opt/airflow/dags/ecommerce_pipeline_dag.py
+[2026-03-19T18:42:08.398+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ecommerce_pipeline_dag.py for tasks to queue
+[2026-03-19T18:42:08.399+0000] {logging_mixin.py:188} INFO - [2026-03-19T18:42:08.399+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/ecommerce_pipeline_dag.py
+[2026-03-19T18:42:08.427+0000] {processor.py:840} INFO - DAG(s) 'ecommerce_medallion_pipeline' retrieved from /opt/airflow/dags/ecommerce_pipeline_dag.py
+[2026-03-19T18:42:08.444+0000] {logging_mixin.py:188} INFO - [2026-03-19T18:42:08.444+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-03-19T18:42:08.469+0000] {logging_mixin.py:188} INFO - [2026-03-19T18:42:08.468+0000] {dag.py:3823} INFO - Setting next_dagrun for ecommerce_medallion_pipeline to 2026-03-18 06:00:00+00:00, run_after=2026-03-19 06:00:00+00:00
+[2026-03-19T18:42:08.495+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ecommerce_pipeline_dag.py took 0.102 seconds

@@ -1,0 +1,31 @@
+{
+  "pipeline": "carts_silver",
+  "run_timestamp": "2026-03-19T15:06:45.363693",
+  "steps": [
+    {
+      "step": "01_after_bronze_read",
+      "row_count": 30,
+      "note": "Raw cart count from bronze"
+    },
+    {
+      "step": "02_cart_summary_ready",
+      "row_count": 30,
+      "note": "Cart-level summary table"
+    },
+    {
+      "step": "03_cart_items_ready",
+      "row_count": 121,
+      "note": "Exploded line-item table"
+    },
+    {
+      "step": "04_written_to_silver",
+      "row_count": 121,
+      "note": "Final line items written"
+    }
+  ],
+  "records_dropped": {
+    "duplicates": 0,
+    "failed_quality_filters": 0,
+    "total": 0
+  }
+}

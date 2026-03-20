@@ -1,0 +1,11 @@
+{
+  "pipeline": "gold_product_performance",
+  "run_timestamp": "2026-03-19T18:27:00.062748",
+  "description": "One row per product \u2014 demand, revenue, and price drift signals",
+  "row_count": 194,
+  "demand_tier_counts": {
+    "low": 72,
+    "high": 61,
+    "medium": 61
+  }
+}

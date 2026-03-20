@@ -1,0 +1,6 @@
+{
+  "pipeline": "gold_customer_360",
+  "run_timestamp": "2026-03-19T18:22:32.824290",
+  "description": "One row per user \u2014 spend, behaviour, and favourite category",
+  "row_count": 208
+}

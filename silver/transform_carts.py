@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from pyspark.sql.functions import (
     col, explode, trim, when, current_timestamp, lit,
     round as spark_round
@@ -40,7 +44,7 @@ def transform_carts():
     df_raw = (
         spark.read
         .option("multiline", "true")
-        .json("../data/bronze/carts/carts_raw.json")
+        .json("data/bronze/carts/carts_raw.json")
     )
 
     df_carts = (
@@ -159,7 +163,7 @@ def transform_carts():
     log_quality_metric(report, "03_cart_items_ready", df_items, "Exploded line-item table")
 
     # Partition by user_id — Gold joins will filter by user frequently
-    df_items.write.mode("overwrite").partitionBy("user_id").parquet("../data/silver/cart_items")
+    df_items.write.mode("overwrite").partitionBy("user_id").parquet("data/silver/cart_items")
 
     # Finalize report
     report["records_dropped"]["total"] = (

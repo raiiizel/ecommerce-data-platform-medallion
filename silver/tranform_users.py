@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from pyspark.sql.functions import (
     col, trim, lower, when, current_timestamp, lit,
     to_date, floor, months_between, current_date
@@ -6,6 +10,7 @@ from pyspark.sql import DataFrame
 from spark_session import create_spark
 import json, os
 from datetime import datetime
+
 
 
 def log_quality_metric(report, step, df, note=""):
@@ -55,7 +60,7 @@ def transform_users():
     df_raw = (
         spark.read
         .option("multiline", "true")
-        .json("../data/bronze/users/users_raw.json")
+        .json("data/bronze/users/users_raw.json")
     )
 
     df_users = (
@@ -212,7 +217,7 @@ def transform_users():
         .write
         .mode("overwrite")
         .partitionBy("address_country")
-        .parquet("../data/silver/users")
+        .parquet("data/silver/users")
     )
 
     log_quality_metric(report, "05_written_to_silver", df_users, "Final count written to silver")

@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from pyspark.sql.functions import (
     explode, col, when, current_timestamp, trim, lower, lit, count
 )
@@ -55,7 +59,7 @@ def transform_products():
     df_raw = (
         spark.read
         .option("multiline", "true")
-        .json("../data/bronze/products/products_raw.json")
+        .json("data/bronze/products/products_raw.json")
     )
 
     # ----------------------------
@@ -182,7 +186,7 @@ def transform_products():
         .write
         .mode("overwrite")
         .partitionBy("category")
-        .parquet("../data/silver/products")
+        .parquet("data/silver/products")
     )
 
     log_quality_metric(report, "05_written_to_silver", df_products, "Final record count written to silver")

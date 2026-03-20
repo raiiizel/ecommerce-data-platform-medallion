@@ -1,0 +1,93 @@
+version: "3.9"
+
+# ─────────────────────────────────────────────────────────────
+# Shared Airflow config — both web and scheduler inherit this
+# x-airflow-common is a YAML anchor, not a service
+# ─────────────────────────────────────────────────────────────
+x-airflow-common: &airflow-common
+  image: apache/airflow:2.8.1-python3.11
+  environment:
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow-db/airflow
+    AIRFLOW__CORE__EXECUTOR: LocalExecutor
+    AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+    AIRFLOW__WEBSERVER__EXPOSE_CONFIG: "true"
+    PIPELINE_HOME: /opt/pipeline
+  volumes:
+    - ./dags:/opt/airflow/dags
+    - ./logs:/opt/airflow/logs
+    - .:/opt/pipeline
+  depends_on:
+    airflow-db:
+      condition: service_healthy
+
+services:
+
+  # ── Your data warehouse ────────────────────────────────────
+  postgres:
+    image: postgres:15
+    container_name: ecommerce_postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: ecommerce_dw
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "admin"]
+      interval: 10s
+      retries: 5
+
+  # ── Airflow's own metadata database (kept separate) ───────
+  airflow-db:
+    image: postgres:15
+    container_name: ecommerce_airflow_db
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - airflow_db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "airflow"]
+      interval: 10s
+      retries: 5
+
+  # ── One-time Airflow setup (runs once then exits) ─────────
+  airflow-init:
+    <<: *airflow-common
+    container_name: ecommerce_airflow_init
+    entrypoint: /bin/bash
+    command:
+      - -c
+      - |
+        airflow db init
+        airflow users create \
+          --username admin \
+          --password admin \
+          --firstname Admin \
+          --lastname User \
+          --role Admin \
+          --email admin@example.com
+    restart: on-failure
+
+  # ── Airflow web UI → http://localhost:8080 ─────────────────
+  airflow-web:
+    <<: *airflow-common
+    container_name: ecommerce_airflow_web
+    command: webserver
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+
+  # ── Airflow scheduler ──────────────────────────────────────
+  airflow-scheduler:
+    <<: *airflow-common
+    container_name: ecommerce_airflow_scheduler
+    command: scheduler
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  airflow_db:

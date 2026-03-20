@@ -1,0 +1,17 @@
+{
+  "pipeline": "gold_stock_risk",
+  "run_timestamp": "2026-03-19T18:30:40.533318",
+  "description": "Operational table \u2014 products where demand threatens stock levels",
+  "thresholds": {
+    "critical": 0,
+    "high": 5,
+    "medium": 20
+  },
+  "row_count": 194,
+  "risk_level_counts": {
+    "critical": 7,
+    "healthy": 147,
+    "high": 13,
+    "medium": 27
+  }
+}
